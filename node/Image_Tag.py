@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import comfy
 
-class LoRACaptionSave:
+class ImageTagSave:
     def __init__(self):
         pass
 
@@ -14,48 +14,38 @@ class LoRACaptionSave:
     def INPUT_TYPES(cls):
         return {
             "required": {
-				"namelist": ("STRING", {"forceInput": True}),
-                "path": ("STRING", {"forceInput": True}),
-                "text": ("STRING", {"forceInput": True}),
-            },
-            "optional": {
-                "prefix": ("STRING", {"default": " "}),
+                "NameList": ("STRING", {"forceInput": True}),
+                "Path": ("STRING", {"forceInput": True}),
+                "Text": ("STRING", {"forceInput": True}),
             }
         }
 
     OUTPUT_NODE = True
     RETURN_TYPES = ()
     FUNCTION = "save_text_file"
-    CATEGORY = "LJRE/LORA"
+    CATEGORY = "WWL/Tag"
 
-    def save_text_file(self, text, path, namelist, prefix):
-
-        if not os.path.exists(path):
-            cstr(f"The path `{path}` doesn't exist! Creating it...").warning.print()
+    def save_text_file(self, Text, Path, NameList):
+        if not os.path.exists(Path):
+            cstr(f"The path `{Path}` doesn't exist! Creating it...").warning.print()
             try:
-                os.makedirs(path, exist_ok=True)
+                os.makedirs(Path, exist_ok=True)
             except OSError as e:
-                cstr(f"The path `{path}` could not be created! Is there write access?\n{e}").error.print()
+                cstr(f"The path `{Path}` could not be created! Is there write access?\n{e}").error.print()
 
-        if text.strip() == '':
+        if Text.strip() == '':
             cstr(f"There is no text specified to save! Text is empty.").error.print()
 
-        namelistsplit = namelist.splitlines()
+        namelistsplit = NameList.splitlines()
         namelistsplit = [i[:-4] for i in namelistsplit]
         
-        
-        if prefix.endswith(","):
-            prefix += " "
-        elif not prefix.endswith(", "):
-            prefix+= ", "
-        
         file_extension = '.txt'
-        filename = self.generate_filename(path, namelistsplit, file_extension)
+        filename = self.generate_filename(Path, namelistsplit, file_extension)
         
-        file_path = os.path.join(path, filename)
-        self.writeTextFile(file_path, text, prefix)
+        file_path = os.path.join(Path, filename)
+        self.writeTextFile(file_path, Text)
 
-        return (text, { "ui": { "string": text } } )
+        return (Text, { "ui": { "string": Text } } )
         
     def generate_filename(self, path, namelistsplit, extension):
         counter = 1
@@ -66,10 +56,9 @@ class LoRACaptionSave:
 
         return filename
 
-    def writeTextFile(self, file, content, prefix):
+    def writeTextFile(self, file, content):
         try:
             with open(file, 'w', encoding='utf-8', newline='\n') as f:
-                content= prefix + content
                 f.write(content)
         except OSError:
             cstr(f"Unable to save file `{file}`").error.print()
@@ -81,7 +70,7 @@ def io_file_list(dir='',pattern='*.txt'):
     return res
 
 			
-class LoRACaptionLoad:
+class ImageTagLoad:
     def __init__(self):
         pass
     
@@ -94,13 +83,11 @@ class LoRACaptionLoad:
         }
 
     RETURN_TYPES = ("STRING", "STRING", "IMAGE",)
-    RETURN_NAMES = ("Name list", "path", "Image list",)
+    RETURN_NAMES = ("NameList", "Path", "ImageList",)
 
     FUNCTION = "captionload"
 
-    #OUTPUT_NODE = False
-
-    CATEGORY = "LJRE/LORA"
+    CATEGORY = "WWL/Tag"
 
     def captionload(self, path, pattern='*.png'):
         text=io_file_list(path,pattern)
