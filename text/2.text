@@ -1,0 +1,536 @@
+{
+  "last_node_id": 182,
+  "last_link_id": 247,
+  "nodes": [
+    {
+      "id": 137,
+      "type": "WWL_ImageTagSave",
+      "pos": [
+        971.060546875,
+        1668.7850341796875
+      ],
+      "size": [
+        315,
+        146
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "NameList",
+          "type": "STRING",
+          "widget": {
+            "name": "NameList"
+          },
+          "link": 182
+        },
+        {
+          "name": "Path",
+          "type": "STRING",
+          "widget": {
+            "name": "Path"
+          },
+          "link": 183
+        },
+        {
+          "name": "Text",
+          "type": "STRING",
+          "widget": {
+            "name": "Text"
+          },
+          "link": 245
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "Image-Captioning-in-ComfyUI",
+        "ver": "9b24deea8eef830da059aa91cac9690ecde19fda",
+        "Node name for S&R": "WWL_ImageTagSave"
+      },
+      "widgets_values": [
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 118,
+      "type": "BatchCount+",
+      "pos": [
+        1.0648881196975708,
+        2479.379150390625
+      ],
+      "size": [
+        210,
+        26
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "batch",
+          "type": "*",
+          "link": 187
+        }
+      ],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            160
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "33ff89fd354d8ec3ab6affb605a79a931b445d99",
+        "Node name for S&R": "BatchCount+"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 120,
+      "type": "Kep_RepeatList",
+      "pos": [
+        232.05300903320312,
+        2458.200439453125
+      ],
+      "size": [
+        287.38995361328125,
+        78
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "In",
+          "type": "*",
+          "link": 188
+        },
+        {
+          "name": "Count",
+          "type": "INT",
+          "widget": {
+            "name": "Count"
+          },
+          "link": 160
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Extended",
+          "type": "*",
+          "shape": 6,
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "Comfy_KepListStuff",
+        "ver": "97320545f9d40bc5c3f63c614c37fcbe88a7dc3d",
+        "Node name for S&R": "Kep_RepeatList"
+      },
+      "widgets_values": [
+        2
+      ]
+    },
+    {
+      "id": 181,
+      "type": "ShowText|pysssss",
+      "pos": [
+        590.948486328125,
+        1965.1661376953125
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 244
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "shape": 6,
+          "links": [
+            245
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "1.2.3",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 169,
+      "type": "LayerUtility: JoyCaption2",
+      "pos": [
+        103.9415512084961,
+        1984.2833251953125
+      ],
+      "size": [
+        428.4000244140625,
+        362
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 243
+        },
+        {
+          "name": "extra_options",
+          "type": "JoyCaption2ExtraOption",
+          "shape": 7,
+          "link": null
+        },
+        {
+          "name": "user_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "user_prompt"
+          },
+          "link": 235
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "shape": 6,
+          "links": [
+            244,
+            246
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI_LayerStyle_Advance",
+        "ver": "89aadaa6c0b8c9adfab86f5d0196f1d13383d47c",
+        "Node name for S&R": "LayerUtility: JoyCaption2"
+      },
+      "widgets_values": [
+        "Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2",
+        "cuda",
+        "bf16",
+        "text_model",
+        "Booru tag list",
+        "very short",
+        "",
+        30,
+        0.9,
+        0.6000000000000001,
+        false,
+        false
+      ],
+      "color": "rgba(38, 73, 116, 0.7)"
+    },
+    {
+      "id": 116,
+      "type": "Text Multiline",
+      "pos": [
+        -372.2510986328125,
+        2466.019775390625
+      ],
+      "size": [
+        317.2140197753906,
+        149.16900634765625
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            188,
+            247
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "was-node-suite-comfyui",
+        "ver": "1.0.2",
+        "Node name for S&R": "Text Multiline"
+      },
+      "widgets_values": [
+        "tigger"
+      ]
+    },
+    {
+      "id": 182,
+      "type": "TextCombinerTwo",
+      "pos": [
+        595.9629516601562,
+        2085.523681640625
+      ],
+      "size": [
+        306.21539306640625,
+        102
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text2",
+          "type": "STRING",
+          "widget": {
+            "name": "text2"
+          },
+          "link": 246
+        },
+        {
+          "name": "text1",
+          "type": "STRING",
+          "widget": {
+            "name": "text1"
+          },
+          "link": 247
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI_Mira",
+        "ver": "d9b0b4488f06a77b815e8bf3aa8f775ef692f806",
+        "Node name for S&R": "TextCombinerTwo"
+      },
+      "widgets_values": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 178,
+      "type": "Text Multiline",
+      "pos": [
+        -367.93133544921875,
+        2172.4912109375
+      ],
+      "size": [
+        345.6982116699219,
+        94.68762969970703
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            235
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "was-node-suite-comfyui",
+        "ver": "1.0.2",
+        "Node name for S&R": "Text Multiline"
+      },
+      "widgets_values": [
+        "Just return the tag content, separated by commas"
+      ]
+    },
+    {
+      "id": 135,
+      "type": "WWL_ImageTagLoad",
+      "pos": [
+        -356.3832092285156,
+        1668.763671875
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NameList",
+          "type": "STRING",
+          "links": [
+            182
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "Path",
+          "type": "STRING",
+          "links": [
+            183
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "ImageList",
+          "type": "IMAGE",
+          "links": [
+            187,
+            243
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "cnr_id": "Image-Captioning-in-ComfyUI",
+        "ver": "9b24deea8eef830da059aa91cac9690ecde19fda",
+        "Node name for S&R": "WWL_ImageTagLoad"
+      },
+      "widgets_values": [
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      160,
+      118,
+      0,
+      120,
+      1,
+      "INT"
+    ],
+    [
+      182,
+      135,
+      0,
+      137,
+      0,
+      "STRING"
+    ],
+    [
+      183,
+      135,
+      1,
+      137,
+      1,
+      "STRING"
+    ],
+    [
+      187,
+      135,
+      2,
+      118,
+      0,
+      "*"
+    ],
+    [
+      188,
+      116,
+      0,
+      120,
+      0,
+      "*"
+    ],
+    [
+      235,
+      178,
+      0,
+      169,
+      2,
+      "STRING"
+    ],
+    [
+      243,
+      135,
+      2,
+      169,
+      0,
+      "IMAGE"
+    ],
+    [
+      244,
+      169,
+      0,
+      181,
+      0,
+      "STRING"
+    ],
+    [
+      245,
+      181,
+      0,
+      137,
+      2,
+      "STRING"
+    ],
+    [
+      246,
+      169,
+      0,
+      182,
+      0,
+      "STRING"
+    ],
+    [
+      247,
+      116,
+      0,
+      182,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.683013455365071,
+      "offset": [
+        507.96824914843677,
+        -1401.7893919687506
+      ]
+    },
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "ue_links": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
